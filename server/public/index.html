@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" ng-app = "myApp">
+  <head>
+    <meta charset="utf-8">
+    <title>GIPHY</title>
+    <script src="vendors/angular.min.js" charset="utf-8"></script>
+    <script src="scripts/client.js" charset="utf-8"></script>
+    <script src="vendors/dirPagination.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  </head>
+  <body>
+    <h1>GIPHY</h1>
+    <section ng-controller="SearchController as vm">
+      <input ng-model="searchBar" type="text" placeholder ="searchBox">
+      <button ng-model="submitSearchButton" ng-click="vm.searchGiphy(searchBar, 0)">Search</button>
+
+
+
+
+
+      <button ng-model="saveButton" ng-click="vm.saveClick(vm.searchOut)">SAVE</button>
+      <button ng-model="displayFavorites" ng-click="vm.displayFavs()">Display Favorites</button>
+      <div class = "searchDisplay">
+
+        <button ng-click="vm.prevButton(searchBar)">Previous</button>
+        <img ng-src="{{vm.searchOut}}"></img>
+        <button ng-click="vm.nextButton(searchBar)">Next</button>
+      </div>
+
+      <section ng-repeat="gif in vm.favArray">
+        <img ng-src="{{gif.url}}"/>
+      </section>
+
+    </section>
+    <section ng-controller="RandomController as vm">
+      <div class = "randomDisplay">
+        <img ng-src="{{vm.randomOut}}"></img>
+      </div>
+      <button ng-model="randomButton" ng-click="vm.randomGiphy()">Random .gif</button>
+    </section>
+  </body>
+</html>
